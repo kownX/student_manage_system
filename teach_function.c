@@ -1,6 +1,6 @@
 #include "teach_function.h"
-const int stu_size = sizeof(student); //结构体大小
 
+//stu_size = sizeof(student);
 //初始化节点
 student *initNode()
 {
@@ -10,6 +10,8 @@ student *initNode()
     printf("erro：init malloc fail\n");
     return NULL;
   }
+  //初始密码为 123456
+  char initpassword[SIZE] = "123456";
 
   head->next = NULL;
   head->Avg = 0;
@@ -20,6 +22,9 @@ student *initNode()
   head->Math = 0;
   strcpy(head->name, "\0");
   strcpy(head->sex, "\0");
+  //给密码添加密钥
+  add_key(initpassword);
+  strcpy(head->password, initpassword);
   head->Sum = 0;
 
   return head;

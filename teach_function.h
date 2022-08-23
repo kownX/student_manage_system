@@ -8,13 +8,32 @@
 #include <fcntl.h>
 //#include <unistd.h>
 
+#define SIZE 20
 #define NAMEMAX 12                           //名字长度
 #define SEXMAX 6                             //性别长度
 #define PATH_2247_stu "2247/stu_message.txt" // 2247班学生信息文件的路径
 
 FILE *stu_fp; //学生信息文件描述符
+int stu_size; //结构体大小
 
+typedef struct teacher
+{
+   char account[SIZE];
+   char password[SIZE];
+}teacher;
 
+typedef struct administrator
+{
+  char account[SIZE];
+  char password[SIZE];
+}administrator;
+
+//学生登录信息结构体
+// typedef struct student_acc
+// {
+//   char account[20];
+//   char password[20];
+// }student_acc;
 //char *major[20] = {0};
 
 typedef struct student
@@ -28,10 +47,11 @@ typedef struct student
   char name[NAMEMAX];
   char sex[SEXMAX];
   int Id;
+  char *password[SIZE];
   struct student *next;
 } student;
 
-
+//*****教师端功能
 
 //初始化节点
 student *initNode();
@@ -88,3 +108,11 @@ void read_file(student *head);
 
 //释放链表
 void destroy(student *head);
+
+
+
+
+
+    //***学生端功能
+bool student_register(student *head);
+void add_key(char *buff);
